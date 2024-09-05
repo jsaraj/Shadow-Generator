@@ -4,11 +4,11 @@ import React, { useState } from 'react'
 
 function ShadowGenerator() {
 
-    const [vertical, setVertical] = useState(' ');
-    const [horizontal, setHorizontal] = useState(' ');
-    const [blur, setBlur] = useState(' ');
-    const [glow, setGlow] = useState(' ');
-
+    const [vertical, setVertical] = useState(10);
+    const [horizontal, setHorizontal] = useState(10);
+    const [blur, setBlur] = useState(10);
+    const [glow, setGlow] = useState(10);
+    const [color,setColor]=useState('#7c6a6a');
 
 
 
@@ -22,14 +22,14 @@ function ShadowGenerator() {
                             <label className='pr-5'>Vertical:</label>
                             <p>{vertical}</p>
                         </div>
-                        <input type='range' onChange={(e) => setVertical(e.target.value)} min={-200} max={200} name='verticla' className='w-full rounded-lg appearance-none cursor-pointer h-2 bg-orange-400'></input>
+                        <input type='range' value={vertical} onChange={(e) => setVertical(e.target.value)} min={-200} max={200} name='verticla' className='w-full rounded-lg appearance-none cursor-pointer h-2 bg-orange-400'></input>
                     </div>
                     <div className='py-2'>
                         <div className='flex'>
                             <label className='pr-5'>Horizontal:</label>
                             <p>{horizontal}</p>
                         </div>
-                        <input type='range' onChange={(e) => setHorizontal(e.target.value)} min={-200} max={200} name='horizontal' className='w-full rounded-lg appearance-none cursor-pointer h-2 bg-orange-400'></input>
+                        <input type='range' value={horizontal} onChange={(e) => setHorizontal(e.target.value)} min={-200} max={200} name='horizontal' className='w-full rounded-lg appearance-none cursor-pointer h-2 bg-orange-400'></input>
 
                     </div>
                     <div className='py-2'>
@@ -37,22 +37,23 @@ function ShadowGenerator() {
                             <label className='pr-5'>Blur:</label>
                             <p>{blur}</p>
                         </div>    
-                        <input type='range' onChange={(e) => setBlur(e.target.value)} min={-200} max={200} name='blur' className='w-full rounded-lg appearance-none cursor-pointer h-2 bg-orange-400'></input>
+                        <input type='range' value={blur} onChange={(e) => setBlur(e.target.value)} min={0} max={200} name='blur' className='w-full rounded-lg appearance-none cursor-pointer h-2 bg-orange-400'></input>
                     </div>
                     <div className='py-2'>
                         <div className='flex'>
                             <label className='pr-5'>Glow:</label>
                             <p>{glow}</p>
                         </div> 
-                        <input type='range' onChange={(e) => setGlow(e.target.value)} min={-200} max={200} name='glow' className='w-full rounded-lg appearance-none cursor-pointer h-2 bg-orange-400'></input>
+                        <input type='range' value={glow} onChange={(e) => setGlow(e.target.value)} min={0} max={200} name='glow' className='w-full rounded-lg appearance-none cursor-pointer h-2 bg-orange-400'></input>
                     </div>
-                    <div className='py-1'>
+                    <div className='py-1 flex'>
                         <label>Color:  </label>
-                        <input type='color' className='rounded-md ml-4'></input>
+                        <input type='color' value={color} onChange={(e)=>{setColor(e.target.value)}} className='rounded-md ml-4'/>
+                        <p>{color}</p>
                     </div>
                 </div>
-                <div className='bg-gray-300 h-96 w-5/12 items-center flex justify-center rounded-md'>
-                    <p className='p-3 border border-orange-400 rounded-md'>10px 10px 10px 10px #c00</p>
+                <div className='bg-gray-300 h-96 w-5/12 items-center flex justify-center rounded-md' style={{boxShadow: `${horizontal}px ${vertical}px ${blur}px ${glow}px ${color}`}}>
+                    <p className='p-3 border border-orange-400 rounded-md'>{horizontal}px {vertical}px {blur}px {glow}px {color}</p>
                 </div>
             </div>
 
